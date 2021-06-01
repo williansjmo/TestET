@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.Domain", "TravelAgency.Domain\TravelAgency.Domain.csproj", "{50D84D16-DB65-46C3-8931-354C8506BD1F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0A0E5EA0-BFCA-4FBA-A162-B0DAB7588B66}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{DF25B38C-4DCE-4C6A-964A-77DF0024B323}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.Infrastructure", "TravelAgency.Infrastructure\TravelAgency.Infrastructure.csproj", "{37A1A7BC-6298-403E-9B3B-724DEEBBE3A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,17 @@ Global
 		{50D84D16-DB65-46C3-8931-354C8506BD1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50D84D16-DB65-46C3-8931-354C8506BD1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50D84D16-DB65-46C3-8931-354C8506BD1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37A1A7BC-6298-403E-9B3B-724DEEBBE3A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37A1A7BC-6298-403E-9B3B-724DEEBBE3A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37A1A7BC-6298-403E-9B3B-724DEEBBE3A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37A1A7BC-6298-403E-9B3B-724DEEBBE3A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{50D84D16-DB65-46C3-8931-354C8506BD1F} = {0A0E5EA0-BFCA-4FBA-A162-B0DAB7588B66}
+		{37A1A7BC-6298-403E-9B3B-724DEEBBE3A0} = {0A0E5EA0-BFCA-4FBA-A162-B0DAB7588B66}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14FA968D-E802-4A3D-BFDF-A7B5F1EE77BF}

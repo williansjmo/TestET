@@ -34,7 +34,7 @@ namespace TravelAgency.Api
             AddConfigureServices(services);
             services.AddDatabaseDeveloperPageExceptionFilter();
             
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }
 

@@ -37,7 +37,7 @@
         [HttpPost]
         public async Task Post([FromBody] Passenger passenger)
         {
-            await service.AddAsync(passenger);
+           await service.AddAsync(passenger);
         }
 
         // PUT api/values/5

@@ -1,0 +1,55 @@
+﻿<div class="modal fade" id="passengerEditPartial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="txtIdentityCardEdit" class="form-label">Cedula</label>
+                        <input type="text" class="form-control" id="txtIdentityCardEdit" placeholder="1234567">
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtNameEdit" class="form-label">Nombre y Apellido</label>
+                        <input type="text" class="form-control" id="txtNameEdit" placeholder="Pedro Perez">
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtAddressEdit" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" id="txtAddressEdit" placeholder="Avenidas Caracas">
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtTelephoneEdit" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control" id="txtTelephoneEdit" placeholder="0412000000000">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="inputIdEdit" />
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+}
+<script>
+    function GetData(id) {
+        $.ajax({
+            type: "GET",
+            url: "/api/PassengerApi/" + id,
+            success: function (result) {
+                $('#inputIdEdit').val(result.id);
+                $('#txtIdentityCardEdit').val(result.identityCard);
+                $('#txtNameEdit').val(result.name);
+                $('#txtAddressEdit').val(result.address);
+                $('#txtTelephoneEdit').val(result.telephone);
+                $('#passengerEditPartial').modal('show');
+            }
+        });
+    }
+</script>

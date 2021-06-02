@@ -10,7 +10,7 @@
     using TravelAgency.Domain.Entities;
     using TravelAgency.Domain.Interfaces;
 
-    class AsyncRepository<T> : IAsyncRepository<T> where T : BaseEntity
+    public class AsyncRepository<T> : IAsyncRepository<T> where T : BaseEntity
     {
         private readonly TravelAgencyDbContext _dbContext;
 
@@ -33,7 +33,7 @@
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+        public async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             var keyValues = new object[] { id };
             return await _dbContext.Set<T>().FindAsync(keyValues, cancellationToken);

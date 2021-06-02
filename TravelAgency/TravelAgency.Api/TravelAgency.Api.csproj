@@ -17,4 +17,7 @@
     <ProjectReference Include="..\TravelAgency.Infrastructure\TravelAgency.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Api\" />
+  </ItemGroup>
 </Project>

@@ -28,9 +28,9 @@
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Passenger> Get(Guid id)
         {
-            return "value";
+            return await service.GetAsync<Passenger>(id);
         }
 
         // POST api/values

@@ -73,6 +73,7 @@ namespace TravelAgency.Api
         {
             services.AddScoped(typeof(IAsyncRepository<>), typeof(AsyncRepository<>));
             services.AddScoped<PassengerService>();
+            services.AddScoped<TravelService>();
         }
     }
 }

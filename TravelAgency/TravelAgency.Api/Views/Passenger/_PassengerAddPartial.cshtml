@@ -1,81 +1,41 @@
 ﻿
-<div class="modal fade" id="passengerAddPartial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="mb-3">
-                        <label for="txtIdentityCard" class="form-label">Cedula</label>
-                        <input type="text" class="form-control" id="txtIdentityCard" placeholder="1234567">
-                    </div>
-                    <div class="mb-3">
-                        <label for="txtName" class="form-label">Nombre y Apellido</label>
-                        <input type="text" class="form-control" id="txtName" placeholder="Pedro Perez">
-                    </div>
-                    <div class="mb-3">
-                        <label for="txtAddress" class="form-label">Dirección</label>
-                        <input type="text" class="form-control" id="txtAddress" placeholder="Avenidas Caracas">
-                    </div>
-                    <div class="mb-3">
-                        <label for="txtTelephone" class="form-label">Teléfono</label>
-                        <input type="text" class="form-control" id="txtTelephone" placeholder="0412000000000">
+<form>
+    <div class="modal fade" id="passengerAddPartial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Datos del Pasajero</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="mb-3">
+                            <label for="txtIdentityCard" class="form-label">Cedula</label>
+                            <input type="text" class="form-control" id="txtIdentityCard" placeholder="1234567">
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtName" class="form-label">Nombre y Apellido</label>
+                            <input type="text" class="form-control" id="txtName" placeholder="Pedro Perez">
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtAddress" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="txtAddress" placeholder="Avenidas Caracas">
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtTelephone" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="txtTelephone" placeholder="0412000000000">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" id="btnRegistrar" class="btn btn-primary" onclick="Registrar();">Registrar</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btnRegistrar" class="btn btn-primary" onclick="Add();">Registrar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 
 @section Scripts{
     
  }
-
-<script>
-    
-    function Registrar() {
-        var formData = new FormData();
-        var identityCard = $('#txtIdentityCard').val();
-        var name = $('#txtName').val();
-        var address = $('#txtAddress').val();
-        var telephone = $('#txtTelephone').val();
-
-        formData.append('IdentityCard', identityCard);
-        formData.append('Name', name);
-        formData.append('Address', address);
-        formData.append('Telephone', telephone);
-        
-        $.ajax({
-            type: "POST",
-            url: "/api/PassengerApi",
-            data: JSON.stringify({
-                IdentityCard: identityCard,
-                Name: name,
-                Address: address,
-                Telephone: telephone
-            }),
-            contentType: "application/json",
-            processData: false,
-            success: function (result) {
-                if ($.trim(result)) {
-                    alert("Guardado Exitosamente!..");
-                    oTable = $('#listado').DataTable();
-                    oTable.draw();
-                    $('#passengerAddPartial').show('hide');
-                } else {
-                    alert("Se produjo un Error al Intentar Guardar");
-                }
-            },
-            error: function (xhr, status, error) {
-                console.log(xhr)
-            }
-        });
-    }
-</script>

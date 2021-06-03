@@ -35,23 +35,27 @@
 
         // POST api/values
         [HttpPost]
-        public async Task Post([FromBody] Passenger passenger)
+        public async Task<IActionResult> Post([FromBody] Passenger passenger)
         {
-           await service.AddAsync(passenger);
+           var result = await service.AddAsync(passenger);
+            return Ok(result);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public async Task Put(Guid id, [FromBody] Passenger passenger)
+        public async Task<IActionResult> Put(Guid id, [FromBody] Passenger passenger)
         {
-            await service.UpdateAsync(passenger);
+            passenger.Id = id;
+            var result = await service.UpdateAsync(passenger);
+            return Ok(result);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public async Task Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            await service.DeleteAsync(id);
+            var result = await service.DeleteAsync(id);
+            return Ok(result);
         }
     }
 }

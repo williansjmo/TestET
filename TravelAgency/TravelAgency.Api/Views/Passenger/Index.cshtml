@@ -36,51 +36,13 @@
 
 <partial name="_PassengerAddPartial" />
 <partial name="_PassengerEditPartial" />
+
 <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example"><button type="button" class="btn btn-danger" onclick=""><i class="fa fa-remove"></i></button><button type="button" class="btn btn-success" onclick="GetData('8164e0dc-3ee2-4c12-95a1-079c06191394')"><i class="fa fa-edit"></i></button></div>
+<script src="~/js/PassengerJs.js" asp-append-version="true"></script>
+
 @section Scripts{
+    
     <script>
-        $(document).ready(function () {
-            $("#listado").DataTable({
-                "language":
-                {
-                    "processing": "<div class=''><i class='fa fa-cog fa-spin site-loader-color'></i></div>",
-                    "search": "Filtro:",
-                },
-                
-                "filter": true,
-                "ajax": {
-                    "url": "/api/PassengerApi",
-                    "type": "GET",
-                    "dataSrc": ''
-                },
-                "columnDefs":
-                    [
-                        {
-                            "targets": [0],
-                            "visible": false,
-                            "searchable": false
-                        },
-                        {
-                            "render": function (data, type, full, meta) {
-                                return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example"><button type="button" class="btn btn-danger" ><i class="fa fa-remove"></i></button><button type="button" class="btn btn-success" onclick="GetData(\'' + full.id + '\');return false;"><i class="fa fa-edit"></i></button></div>'
-                            },
-                            "targets": [5],
-                        },
-                        { "searchable": true, "targets": [1, 2, 3, 4] },
-                        { "className": "text-center", "targets": [1, 2, 3, 4] }
-                    ],
-                "columns": [
-                    { "data": "id", "name": "id", "autoWidth": true },
-                    { "data": "identityCard", "name": "identityCard", "autoWidth": true },
-                    { "data": "name", "name": "name", "autoWidth": true },
-                    { "data": "address", "name": "address", "autoWidth": true },
-                    { "data": "telephone", "name": "telephone", "autoWidth": true },
-                ],
-                "dom": "<'row'<'col-sm-6'l><'col-sm-6'<'#buttonContainer.site-datatable-button-container'>f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-            });
-            $("#buttonContainer")
-                .addClass("pull-right")
-                .append(" <button type='button' class='btn btn-sm btn-primary' data-bs-toggle='modal' data-bs-target='#passengerAddPartial'><i class='fa fa-file-text-o'></i></button>");
-        });
+        LoadLis();
     </script>
 }

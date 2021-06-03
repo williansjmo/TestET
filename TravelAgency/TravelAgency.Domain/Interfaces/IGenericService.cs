@@ -9,9 +9,9 @@ namespace TravelAgency.Domain.Interfaces
 
     public interface IGenericService
     {
-        Task AddAsync<T>(T entity);
-        Task UpdateAsync<T>(T entity);
-        Task DeleteAsync(Guid Id);
+        Task<bool> AddAsync<T>(T entity);
+        Task<bool> UpdateAsync<T>(T entity);
+        Task<bool> DeleteAsync(Guid Id);
         Task<List<T>> GetAllAsync<T>();
         Task<T> GetAsync<T>(Guid Id);
     }

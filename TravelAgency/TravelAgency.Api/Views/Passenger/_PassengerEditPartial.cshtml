@@ -27,29 +27,18 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="inputIdEdit" />
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="Update();">Guardar</button>
             </div>
         </div>
     </div>
 </div>
 
 @section Scripts{
-
+    <script>
+        
+    </script>
 }
 <script>
-    function GetData(id) {
-        $.ajax({
-            type: "GET",
-            url: "/api/PassengerApi/" + id,
-            success: function (result) {
-                $('#inputIdEdit').val(result.id);
-                $('#txtIdentityCardEdit').val(result.identityCard);
-                $('#txtNameEdit').val(result.name);
-                $('#txtAddressEdit').val(result.address);
-                $('#txtTelephoneEdit').val(result.telephone);
-                $('#passengerEditPartial').modal('show');
-            }
-        });
-    }
+    
 </script>

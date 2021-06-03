@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
+    using System.Linq.Expressions;
     using System.Threading;
     using System.Threading.Tasks;
     using TravelAgency.Domain.Entities;
@@ -13,10 +13,12 @@
     public class AsyncRepository<T> : IAsyncRepository<T> where T : BaseEntity
     {
         private readonly TravelAgencyDbContext _dbContext;
+        protected DbSet<T> DbSet { get; set; }
 
         public AsyncRepository(TravelAgencyDbContext dbContext)
         {
             _dbContext = dbContext;
+            DbSet = dbContext.Set<T>();
         }
 
         public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
@@ -31,6 +33,12 @@
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        public virtual IQueryable<T> Include(params Expression<Func<T, object>>[] children)
+        {
+            children.ToList().ForEach(x => DbSet.Include(x).Load());
+            return DbSet;
         }
 
         public async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -48,6 +56,16 @@
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<T> GetExpressionAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _dbContext.Set<T>().Where(predicate).FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> AnyExpressionAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _dbContext.Set<T>().AnyAsync(predicate);
         }
     }
 }

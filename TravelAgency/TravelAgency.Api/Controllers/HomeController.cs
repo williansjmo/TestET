@@ -28,20 +28,6 @@ namespace TravelAgency.Api.Controllers
             return View();
         }
 
-        public IActionResult Travel()
-        {
-            return View();
-        }
-
-        public IActionResult Passenger()
-        {
-            return View();
-        }
-
-        public IActionResult Traveller()
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

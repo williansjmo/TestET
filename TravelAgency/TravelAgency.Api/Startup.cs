@@ -72,8 +72,9 @@ namespace TravelAgency.Api
         public void AddConfigureServices(IServiceCollection services)
         {
             services.AddScoped(typeof(IAsyncRepository<>), typeof(AsyncRepository<>));
-            services.AddScoped<PassengerService>();
-            services.AddScoped<TravelService>();
+            services.AddTransient<PassengerService>();
+            services.AddTransient<TravelService>();
+            services.AddTransient<TravellerService>();
         }
     }
 }

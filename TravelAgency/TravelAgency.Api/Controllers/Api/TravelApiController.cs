@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using TravelAgency.Domain.Entities;
-using TravelAgency.Domain.Services;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace TravelAgency.Api.Controllers.Api
+﻿namespace TravelAgency.Api.Controllers.Api
 {
+    using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using TravelAgency.Domain.Entities;
+    using TravelAgency.Domain.Interfaces;
+    using TravelAgency.Domain.Services;
+
     [Route("api/[controller]")]
     public class TravelApiController : Controller
     {
-        private TravelService service;
+        private IGenericService service;
         public TravelApiController(TravelService service)
         {
             this.service = service;
@@ -30,6 +28,12 @@ namespace TravelAgency.Api.Controllers.Api
         public async Task<Travel> Get(Guid id)
         {
             return await service.GetAsync<Travel>(id);
+        }
+
+        [HttpGet("GetTravelCode/{TravelCode}")]
+        public async Task<Travel> GetTravelCode(string TravelCode)
+        {
+            return await ((TravelService)service).GetTravelCode<Travel>(TravelCode);
         }
 
         // POST api/values

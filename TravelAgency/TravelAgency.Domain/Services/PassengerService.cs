@@ -2,8 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using TravelAgency.Domain.Entities;
     using TravelAgency.Domain.Interfaces;
@@ -17,10 +15,11 @@
             this.repository = repository;
         }
 
-
         public async Task<List<T>> GetAllAsync<T>() => await repository.ListAllAsync() as List<T>;
 
         public async Task<T> GetAsync<T>(Guid Id) => await Task.FromResult((T)Convert.ChangeType(await repository.GetByIdAsync(Id), typeof(T)));
+
+        public async Task<T> GetPassengerIdentityCard<T>(double IdentityCard) => await Task.FromResult((T)Convert.ChangeType(await repository.GetExpressionAsync(g => g.IdentityCard == IdentityCard), typeof(T)));
 
         public async Task<bool> AddAsync<T>(T entity)
         {

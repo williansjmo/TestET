@@ -6,13 +6,14 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using TravelAgency.Domain.Entities;
+    using TravelAgency.Domain.Interfaces;
     using TravelAgency.Domain.Services;
 
 
     [Route("api/[controller]")]
     public class PassengerApiController : Controller
     {
-        private readonly PassengerService service;
+        private readonly IGenericService service;
 
         public PassengerApiController(PassengerService service)
         {
@@ -31,6 +32,12 @@
         public async Task<Passenger> Get(Guid id)
         {
             return await service.GetAsync<Passenger>(id);
+        }
+
+        [HttpGet("GetPassengerIdentityCard/{IdentityCard}")]
+        public async Task<Passenger> GetPassengerIdentityCard(double IdentityCard)
+        {
+            return await ((PassengerService)service).GetPassengerIdentityCard<Passenger>(IdentityCard);
         }
 
         // POST api/values

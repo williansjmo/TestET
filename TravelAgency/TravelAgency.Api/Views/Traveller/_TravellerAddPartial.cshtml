@@ -1,6 +1,6 @@
 ﻿
 <form>
-    <div class="modal fade" id="travelAddPartial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="travellerAddPartial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -11,30 +11,42 @@
                     <div class="row">
                         <div class="mb-3">
                             <label for="txtTravelCode" class="form-label">Codigo de viaje</label>
+                            <input type="text" class="form-control" id="txtIdentityCard" placeholder=""/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtName" class="form-label">Dato del pasajero</label>
+                            <input type="text" class="form-control" id="txtName" placeholder="" readonly>
+                        </div>
+                        <hr />
+                        <h4>Datos del Viaje</h4>
+                        <div class="mb-3">
+                            <label for="txtTravelCode" class="form-label">Codigo de viaje</label>
                             <input type="text" class="form-control" id="txtTravelCode" placeholder="">
                         </div>
                         <div class="mb-3">
                             <label for="txtNumberOfSeats" class="form-label">Número de plaza</label>
-                            <input type="text" class="form-control" id="txtNumberOfSeats" placeholder="">
+                            <input type="text" class="form-control" id="txtNumberOfSeats" placeholder="" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="txtDestination" class="form-label">Destino</label>
-                            <input type="text" class="form-control" id="txtDestination" placeholder="">
+                            <input type="text" class="form-control" id="txtDestination" placeholder="" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="txtPlaceOfOrigin" class="form-label">Lugar de origen</label>
-                            <input type="text" class="form-control" id="txtPlaceOfOrigin" placeholder="">
+                            <input type="text" class="form-control" id="txtPlaceOfOrigin" placeholder="" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="txtPrice" class="form-label">Precio</label>
-                            <input type="text" class="form-control" id="txtPrice" placeholder="">
+                            <input type="text" class="form-control" id="txtPrice" placeholder="" readonly>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" id="inputTravellerId" />
+                    <input type="hidden" id="inputPassengerId" />
                     <input type="hidden" id="inputTravelId" />
-                    <button type="button" id="btnCloseTravel" class="btn btn-secondary">Cerrar</button>
-                    <button type="button" id="btnAddTravel" class="btn btn-primary">Registrar</button>
+                    <button type="button" id="btnCloseTraveller" class="btn btn-secondary">Cerrar</button>
+                    <button type="button" id="btnAddTraveller" class="btn btn-primary">Registrar</button>
                 </div>
             </div>
         </div>

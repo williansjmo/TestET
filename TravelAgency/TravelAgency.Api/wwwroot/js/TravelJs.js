@@ -1,9 +1,5 @@
 ﻿function LoadTravelList() {
     $("#listado").DataTable({
-        "language":
-        {
-            "search": "Filtro:",
-        },
         "filter": true,
         "ajax": {
             "url": "/api/TravelApi",
@@ -19,7 +15,7 @@
                 },
                 {
                     "render": function (data, type, full, meta) {
-                        return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example"><button type="button" class="btn btn-danger" onclick="Delete(\'' + full.id + '\');return false;"><i class="fa fa-remove"></i></button><button type="button" class="btn btn-success" onclick="GetData(\'' + full.id + '\');return false;"><i class="fa fa-edit"></i></button></div>'
+                        return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example"><button type="button" class="btn btn-danger" onclick="DeleteTravel(\'' + full.id + '\');return false;"><i class="fa fa-remove"></i></button><button type="button" class="btn btn-success" onclick="GetTravel(\'' + full.id + '\');return false;"><i class="fa fa-edit"></i></button></div>'
                     },
                     "targets": [6],
                 },
@@ -41,7 +37,7 @@
         .append(" <button type='button' class='btn btn-sm btn-primary' data-bs-toggle='modal' data-bs-target='#travelAddPartial'><i class='fa fa-file-text-o'></i></button>");
 }
 
-function Add() {
+function AddTravel() {
     var travelCode = $('#txtTravelCode').val();
     var numberOfSeats = $('#txtNumberOfSeats').val();
     var destination = $('#txtDestination').val();
@@ -65,6 +61,7 @@ function Add() {
         success: function (result) {
             if ($.trim(result)) {
                 $('#travelAddPartial').modal('hide');
+                ClearTravel();
                 $("#listado").DataTable().ajax.reload();
                 Success('Guardado Exitosamente!..');
             } else {
@@ -77,13 +74,13 @@ function Add() {
     });
 }
 
-function Update() {
-    var id = $('#inputId').val();
-    var travelCode = $('#txtTravelCodeEdit').val();
-    var numberOfSeats = $('#txtNumberOfSeatsEdit').val();
-    var destination = $('#txtDestinationEdit').val();
-    var placeOfOrigin = $('#txtPlaceOfOriginEdit').val();
-    var price = $('#txtPriceEdit').val();
+function UpdateTravel() {
+    var id = $('#inputTravelId').val();
+    var travelCode = $('#txtTravelCode').val();
+    var numberOfSeats = $('#txtNumberOfSeats').val();
+    var destination = $('#txtDestination').val();
+    var placeOfOrigin = $('#txtPlaceOfOrigin').val();
+    var price = $('#txtPrice').val();
 
     var data = JSON.stringify({
         TravelCode: travelCode,
@@ -101,7 +98,8 @@ function Update() {
         processData: false,
         success: function (result) {
             if ($.trim(result)) {
-                $('#travelEditPartial').modal('hide');
+                $('#travelAddPartial').modal('hide');
+                ClearTravel();
                 Success('Guardado Exitosamente!..');
                 $("#listado").DataTable().ajax.reload();
             } else {
@@ -114,18 +112,18 @@ function Update() {
     });
 }
 
-function GetData(id) {
+function GetTravel(id) {
     $.ajax({
         type: "GET",
         url: "/api/TravelApi/" + id,
         success: function (result) {
-            $('#inputId').val(result.id);
-            $('#txtTravelCodeEdit').val(result.travelCode);
-            $('#txtNumberOfSeatsEdit').val(result.numberOfSeats);
-            $('#txtDestinationEdit').val(result.destination);
-            $('#txtPlaceOfOriginEdit').val(result.placeOfOrigin);
-            $('#txtPriceEdit').val(result.price);
-            $('#travelEditPartial').modal('show');
+            $('#inputTravelId').val(result.id);
+            $('#txtTravelCode').val(result.travelCode);
+            $('#txtNumberOfSeats').val(result.numberOfSeats);
+            $('#txtDestination').val(result.destination);
+            $('#txtPlaceOfOrigin').val(result.placeOfOrigin);
+            $('#txtPrice').val(result.price);
+            $('#travelAddPartial').modal('show');
         },
         error: function (xhr, status, error) {
             console.log(xhr);
@@ -134,7 +132,7 @@ function GetData(id) {
     });
 }
 
-function Delete(id) {
+function DeleteTravel(id) {
     $.ajax({
         type: "GET",
         url: "/api/TravelApi/" + id,
@@ -165,4 +163,21 @@ function Delete(id) {
             });
         }
     });
+}
+
+$('#btnAddTravel').click(function () {
+    if ($('#inputTravelId').val() == '') {
+        AddTravel();
+    }
+    else {
+        UpdateTravel();
+    }
+});
+$('#btnCloseTravel').click(function () {
+    $('#travelAddPartial').modal('hide');
+    ClearTravel();
+});
+
+function ClearTravel() {
+    $(':input').val('');
 }

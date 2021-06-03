@@ -20,6 +20,8 @@
 
         public async Task<T> GetAsync<T>(Guid Id) => await Task.FromResult((T)Convert.ChangeType(await repository.GetByIdAsync(Id), typeof(T)));
 
+        public async Task<T> GetTravelCode<T>(string TravelCode) => await Task.FromResult((T)Convert.ChangeType(await repository.GetExpressionAsync(g => g.TravelCode == TravelCode), typeof(T)));
+
         public async Task<bool> AddAsync<T>(T entity)
         {
             try

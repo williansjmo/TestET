@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TravelAgency.Domain.Entities
+﻿namespace TravelAgency.Domain.Entities
 {
+    using System.Collections.Generic;
+
+
     //Viajes
     public class Travel : BaseEntity
     {
@@ -14,5 +11,7 @@ namespace TravelAgency.Domain.Entities
         public string Destination { get; set; }
         public string PlaceOfOrigin { get; set; }
         public decimal Price { get; set; }
+
+        public ICollection<Travellers> Travellers { get; set; }
     }
 }

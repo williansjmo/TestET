@@ -1,5 +1,35 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Listado de Viajeros</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <table id="listado" class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Id
+                                </th>
+                                <th>
+                                    Destino
+                                </th>
+                                <th>
+                                    Pasajero
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="_TravellerAddPartial" />
+
+@section Scripts{
+    <script src="~/js/TravellerJs.js" asp-append-version="true"></script>
+    <script>LoadList();</script>
 }

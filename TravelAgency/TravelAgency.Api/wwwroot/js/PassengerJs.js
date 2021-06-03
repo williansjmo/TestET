@@ -1,10 +1,5 @@
 ﻿function LoadLis() {
     $("#listado").DataTable({
-        "language":
-        {
-            
-            "search": "Filtro:",
-        },
         "filter": true,
         "ajax": {
             "url": "/api/PassengerApi",
@@ -20,7 +15,7 @@
                 },
                 {
                     "render": function (data, type, full, meta) {
-                        return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example"><button type="button" class="btn btn-danger" onclick="Delete(\'' + full.id + '\');return false;"><i class="fa fa-remove"></i></button><button type="button" class="btn btn-success" onclick="GetData(\'' + full.id + '\');return false;"><i class="fa fa-edit"></i></button></div>'
+                        return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example"><button type="button" class="btn btn-danger" onclick="DeletePassenger(\'' + full.id + '\');return false;"><i class="fa fa-remove"></i></button><button type="button" class="btn btn-success" onclick="GetPassenger(\'' + full.id + '\');return false;"><i class="fa fa-edit"></i></button></div>'
                     },
                     "targets": [5],
                 },
@@ -41,7 +36,7 @@
         .append(" <button type='button' class='btn btn-sm btn-primary' data-bs-toggle='modal' data-bs-target='#passengerAddPartial'><i class='fa fa-file-text-o'></i></button>");
 }
 
-function Add() {
+function AddPassenger() {
     var identityCard = $('#txtIdentityCard').val();
     var name = $('#txtName').val();
     var address = $('#txtAddress').val();
@@ -63,6 +58,7 @@ function Add() {
         success: function (result) {
             if ($.trim(result)) {
                 $('#passengerAddPartial').modal('hide');
+                ClearPassenger();
                 $("#listado").DataTable().ajax.reload();
                 Success('Guardado Exitosamente!..');
             } else {
@@ -75,12 +71,12 @@ function Add() {
     });
 }
 
-function Update() {
-    var id = $('#inputIdEdit').val();
-    var identityCard = $('#txtIdentityCardEdit').val();
-    var name = $('#txtNameEdit').val();
-    var address = $('#txtAddressEdit').val();
-    var telephone = $('#txtTelephoneEdit').val();
+function UpdatePassenger() {
+    var id = $('#inputPassengerId').val();
+    var identityCard = $('#txtIdentityCard').val();
+    var name = $('#txtName').val();
+    var address = $('#txtAddress').val();
+    var telephone = $('#txtTelephone').val();
 
     var data = JSON.stringify({
 
@@ -98,8 +94,9 @@ function Update() {
         processData: false,
         success: function (result) {
             if ($.trim(result)) {
-                $('#passengerEditPartial').modal('hide');
+                $('#passengerAddPartial').modal('hide');
                 Success('Guardado Exitosamente!..');
+                ClearPassenger();
                 $("#listado").DataTable().ajax.reload();
             } else {
                 Errors('Se produjo un Error al Intentar Guardar');
@@ -111,22 +108,22 @@ function Update() {
     });
 }
 
-function GetData(id) {
+function GetPassenger(id) {
     $.ajax({
         type: "GET",
         url: "/api/PassengerApi/" + id,
         success: function (result) {
-            $('#inputIdEdit').val(result.id);
-            $('#txtIdentityCardEdit').val(result.identityCard);
-            $('#txtNameEdit').val(result.name);
-            $('#txtAddressEdit').val(result.address);
-            $('#txtTelephoneEdit').val(result.telephone);
-            $('#passengerEditPartial').modal('show');
+            $('#inputPassengerId').val(result.id);
+            $('#txtIdentityCard').val(result.identityCard);
+            $('#txtName').val(result.name);
+            $('#txtAddress').val(result.address);
+            $('#txtTelephone').val(result.telephone);
+            $('#passengerAddPartial').modal('show');
         }
     });
 }
 
-function Delete(id)
+function DeletePassenger(id)
 {
     $.ajax({
         type: "GET",
@@ -158,4 +155,21 @@ function Delete(id)
             });
         }
     });
+}
+
+$('#btnAddPassenger').click(function () {
+    if ($('#inputPassengerId').val() == '') {
+        AddPassenger();
+    }
+    else {
+        UpdatePassenger();
+    }
+});
+$('#btnClosePassenger').click(function () {
+    $('#passengerAddPartial').modal('hide');
+    ClearPassenger();
+});
+
+function ClearPassenger() {
+    $(':input').val('');
 }

@@ -1,11 +1,8 @@
-﻿
-namespace TravelAgency.Domain.Interfaces
+﻿namespace TravelAgency.Domain.Interfaces
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using TravelAgency.Domain.Entities;
-
 
     public interface IGenericService
     {

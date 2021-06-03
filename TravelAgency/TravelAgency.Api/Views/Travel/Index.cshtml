@@ -1,1 +1,48 @@
 ﻿
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Listado de Viajes</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <table id="listado">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Id
+                                </th>
+                                <th>
+
+                                </th>
+                                <th>
+
+                                </th>
+                                <th>
+
+                                </th>
+                                <th>
+
+                                </th>
+                                <th>
+
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="_TravelAddPartial" />
+<partial name="_TravelEditPartial" />
+
+<script src="~/js/TravelJs.js" asp-append-version="true"></script>
+
+@section Scripts{
+
+    <script>LoadTravelList();</script>
+}

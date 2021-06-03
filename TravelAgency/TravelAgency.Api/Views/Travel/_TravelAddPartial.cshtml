@@ -1,0 +1,45 @@
+﻿
+<form>
+    <div class="modal fade" id="travelAddPartial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Datos del Viaje</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="mb-3">
+                            <label for="txtTravelCode" class="form-label">Cedula</label>
+                            <input type="text" class="form-control" id="txtTravelCode" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtNumberOfSeats" class="form-label">Nombre y Apellido</label>
+                            <input type="text" class="form-control" id="txtNumberOfSeats" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtDestination" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="txtDestination" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtPlaceOfOrigin" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="txtPlaceOfOrigin" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtPrice" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="txtPrice" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btnRegistrar" class="btn btn-primary" onclick="Add();">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+
+}

@@ -34,23 +34,27 @@ namespace TravelAgency.Api.Controllers.Api
 
         // POST api/values
         [HttpPost]
-        public async Task Post([FromBody] Travel travel)
+        public async Task<IActionResult> Post([FromBody] Travel travel)
         {
-            await service.AddAsync(travel);
+            var result = await service.AddAsync(travel);
+            return Ok(result);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public async Task Put(Guid id, [FromBody] Travel travel)
+        public async Task<IActionResult> Put(Guid id, [FromBody] Travel travel)
         {
-            await service.UpdateAsync(travel);
+            travel.Id = id;
+            var result = await service.UpdateAsync(travel);
+            return Ok(result);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public async Task Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            await service.DeleteAsync(id);
+            var result = await service.DeleteAsync(id);
+            return Ok(result);
         }
     }
 }
